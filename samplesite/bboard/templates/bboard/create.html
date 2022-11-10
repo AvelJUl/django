@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Добавление объявления :: Доска объявлений</title>
+  </head>
+  <body>
+    <h1>Добавление объявления</h1>
+
+    <div>
+      <a href="{% url 'bboard:list' %}">Главная</a>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Добавить"/>
+    </form>
+  </body>
+</html>

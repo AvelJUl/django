@@ -1,0 +1,20 @@
+<!-- ad_detail.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Просмотр объявления :: Доска объявлений</title>
+  </head>
+  <body>
+    <h1>Просмотр объявления !!!!</h1>
+    <div>
+      <a href="{% url 'bboard:list' %}">Главная</a>
+    </div>
+    <div>
+      <p>Рубрика: {{ ad.rubric.name }}</p>
+      <h2>{{ ad.title }}</h2>
+      <p>{{ ad.content }}</p>
+      <p>Цена: {{ ad.price }}</p>
+    </div>
+  </body>
+</html>
