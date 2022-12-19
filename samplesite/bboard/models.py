@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 
 
 class Rubric(models.Model):
@@ -11,16 +12,25 @@ class Rubric(models.Model):
 
 class Ad(models.Model):
     rubric = models.ForeignKey(
-        Rubric, on_delete=models.PROTECT, blank=True, null=True,
+        Rubric, verbose_name='Рубрика', on_delete=models.CASCADE,
         related_name='ads'
     )
-    title = models.CharField(max_length=50)
+    title = models.CharField(verbose_name='Заголовок', max_length=50)
     content = models.TextField(verbose_name='Описание', null=True, blank=True)
-    price = models.FloatField(null=True, blank=True)
-    published = models.DateTimeField(auto_now_add=True, db_index=True)
+    price = models.FloatField(verbose_name='Цена', null=True, blank=True)
+    published = models.DateTimeField(
+        verbose_name='Опубликовано', auto_now_add=True, db_index=True,
+    )
 
     def __str__(self):
         return f'{self.published} {self.title}'
+
+    def beautiful_title(self):
+        return f'СРОЧНО {self.title}'
+
+    class Meta:
+        verbose_name = 'Объявление'
+        verbose_name_plural = 'Объявления'
 
     def clean(self):
         errors = {}
@@ -41,6 +51,10 @@ class Ad(models.Model):
     # ):
     #     self.clean()
     #     super().save(force_insert, force_update, using, update_fields)
+
+
+    def get_absolute_url(self):
+        return reverse('space:detail', kwargs={'id': self.pk})
 
 
 class Spare (models.Model):

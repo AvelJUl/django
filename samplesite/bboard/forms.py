@@ -12,7 +12,7 @@ class AdForm(forms.ModelForm):
         queryset=Rubric.objects.all(),
         label='Рубрика',
         help_text='He забудьте задать рубрику!',
-        widget=forms.widgets.Select(attrs={'size': 8})
+        widget=forms.widgets.Select()
         )
 
     class Meta:

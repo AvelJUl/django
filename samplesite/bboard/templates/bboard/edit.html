@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Редактирование объявления :: Доска объявлений</title>
-  </head>
-  <body>
-    <h1>Редактирование объявления</h1>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Добавить"/>
-    </form>
-  </body>
-</html>
+{% extends "bboard/create.html" %}
+
+{% block title %}Редактирование объявления{% endblock %}
+
+
+{% block header %}Редактирование объявления{% endblock header %}
+{% block submit %}Сохранить изменения{% endblock submit %}

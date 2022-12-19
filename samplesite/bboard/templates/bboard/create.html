@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Добавление объявления :: Доска объявлений</title>
-  </head>
-  <body>
-    <h1>Добавление объявления</h1>
+{% extends "bboard/basic.html" %}
+
+{% block title %}Добавление объявления{% endblock %}
+
+{% block content %}
+    <h1>{% block header %}Добавление объявления{% endblock header %}</h1>
 
     <div>
-      <a href="{% url 'bboard:list' %}">Главная</a>
+      <a href="{% url 'space:list' %}">Главная</a>
     </div>
 
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" value="Добавить"/>
+      <input type="submit" value="{% block submit %}Добавить{% endblock submit %}"/>
     </form>
-  </body>
-</html>
+{% endblock content %}
